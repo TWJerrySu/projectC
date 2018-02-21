@@ -56,5 +56,5 @@ if __name__ == "__main__":
     s = Catch()
     s.login()
     s.open_taget_windows()
-    # s.entry_stock_number()
+    s.entry_stock_number()
     s.quit()
