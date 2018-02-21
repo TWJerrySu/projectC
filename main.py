@@ -1,7 +1,9 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from foo.util.screenshot import screenshot
+from util.screenshot import screenshot
 import time
 
 
@@ -17,14 +19,13 @@ class Catch(screenshot):
 
 
     def login(self):
-        time.sleep(3)
         self.driver.find_element_by_class_name('TEdit').find_element_by_name("").send_keys(self.password)
         self.driver.find_element_by_class_name('TEdit').submit()
-        time.sleep(5)
 
     def open_taget_windows(self):
         window = self.driver.find_element_by_class_name('TimMainFrm')
-        win = window.find_element_by_name("4500")
+        WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.NAME, "4500")))
+        win = window.find_element_by_id("1001")
         win.send_keys("4000")
 
     def entry_stock_number(self):
@@ -55,5 +56,5 @@ if __name__ == "__main__":
     s = Catch()
     s.login()
     s.open_taget_windows()
-    s.entry_stock_number()
+    # s.entry_stock_number()
     s.quit()
