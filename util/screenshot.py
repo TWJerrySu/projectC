@@ -14,9 +14,12 @@ class screenshot:
         return data_list
 
     def take_screen_from_list(self, stock_num):
-        stk = stock_num + '.png'
+        stk = str(stock_num) + '.png'
         file_path = os.path.join(self.save_path, stk)
-        self.driver.get_screenshot_as_file(file_path)
+        try:
+            self.driver.get_screenshot_as_file(file_path)
+        except:
+            print("Failed to take screen.Num: {}".format(stk))
 
 # a = screenshot()
 # a.get_stock_number_list()

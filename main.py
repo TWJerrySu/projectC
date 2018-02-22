@@ -31,12 +31,16 @@ class Catch(screenshot):
         win = window.find_element_by_id("1001")
         win.send_keys("4000")
 
-    def entry_stock_number(self):
+    def focus_on_target_page(self):
         w = self.driver.find_element_by_class_name('TfrmSniperPro').find_element_by_name('TAB')
         q = w.find_element_by_class_name('TCodeForm').find_element_by_class_name('TCHARTINPUT')
         fc = q.find_element_by_class_name('TCodeEdit').find_element_by_class_name("TCdEdit")
         actions = ActionChains(self.driver)
         actions.move_to_element(fc).move_by_offset(20, 0).click().perform()
+        return fc
+
+    def entry_stock_number(self):
+        fc = self.focus_on_target_page()
         stk_list = self.get_stock_number_list()
         for stk in stk_list:
             try:
@@ -52,6 +56,8 @@ class Catch(screenshot):
                 self.take_screen_from_list(stk)
             except:
                 time.sleep(3)
+                if not self.driver.find_element_by_class_name('TfrmSniperPro').find_element_by_name('TAB').is_displayed():
+                    fc = self.focus_on_target_page()
                 print(stk)
 
 
