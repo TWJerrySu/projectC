@@ -39,16 +39,21 @@ class Catch(screenshot):
         actions.move_to_element(fc).move_by_offset(20, 0).click().perform()
         stk_list = self.get_stock_number_list()
         for stk in stk_list:
-            fc.clear()
-            while fc.text != "":
+            try:
                 fc.clear()
-            # fc.send_keys(Keys.CONTROL + 'a')
-            # fc.send_keys(Keys.DELETE)
-            fc.send_keys(stk)
-            time.sleep(1)
-            fc.click()
-            time.sleep(1.5)
-            self.take_screen_from_list(stk)
+                while fc.text != "":
+                    fc.clear()
+                # fc.send_keys(Keys.CONTROL + 'a')
+                # fc.send_keys(Keys.DELETE)
+                fc.send_keys(stk)
+                time.sleep(1)
+                fc.click()
+                time.sleep(1.5)
+                self.take_screen_from_list(stk)
+            except:
+                time.sleep(3)
+                print(stk)
+
 
     def upload_files(self):
         process = subprocess.Popen(self.upload)
