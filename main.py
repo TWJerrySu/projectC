@@ -25,7 +25,7 @@ class Catch(screenshot):
         self.driver.find_element_by_class_name('TEdit').submit()
 
     def open_taget_windows(self):
-        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.NAME, "TimMainFrm")))
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "TimMainFrm")))
         window = self.driver.find_element_by_class_name('TimMainFrm')
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.NAME, "4500")))
         win = window.find_element_by_id("1001")
