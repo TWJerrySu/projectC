@@ -5,12 +5,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from util.screenshot import screenshot
 import time
+import subprocess
 
 
 class Catch(screenshot):
     def __init__(self):
         # put it in setUp
-        self.save_path = 'D:/'
+        self.save_path = 'C:/Users/Administrator/Desktop/stock_img'
+        self.upload = ['node','C:/Users/Administrator/Desktop/stock_img/Porshche/upload.js']
         self.hts_path = 'C:/JihSun/HTS2/JSCOM.exe'
         self.password = ""
         self.driver = webdriver.Remote(command_executor='http://localhost:9999',
@@ -24,7 +26,7 @@ class Catch(screenshot):
 
     def open_taget_windows(self):
         window = self.driver.find_element_by_class_name('TimMainFrm')
-        WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.NAME, "4500")))
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.NAME, "4500")))
         win = window.find_element_by_id("1001")
         win.send_keys("4000")
 
@@ -47,6 +49,10 @@ class Catch(screenshot):
             time.sleep(1.5)
             self.take_screen_from_list(stk)
 
+    def upload_files(self):
+        process = subprocess.Popen(self.upload)
+        process.communicate(input=None)
+
     def quit(self):
         self.driver.quit()
         self.driver.close()
@@ -57,4 +63,5 @@ if __name__ == "__main__":
     s.login()
     s.open_taget_windows()
     s.entry_stock_number()
+    s.upload_files()
     s.quit()
