@@ -55,8 +55,8 @@ class Catch(screenshot):
                 time.sleep(1.5)
                 self.take_screen_from_list(stk)
             except:
-                time.sleep(3)
-                if not self.driver.find_element_by_class_name('TfrmSniperPro').find_element_by_name('TAB').is_displayed():
+                time.sleep(5)
+                if not self.driver.find_element_by_class_name("TCdEdit").is_displayed():
                     fc = self.focus_on_target_page()
                 print(stk)
 
