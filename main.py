@@ -14,7 +14,7 @@ class Catch(screenshot):
         self.save_path = 'C:/Users/Administrator/Desktop/stock_img'
         self.upload = ['node','C:/Users/Administrator/Desktop/stock_img/Porshche/upload.js']
         self.hts_path = 'C:/JihSun/HTS2/JSCOM.exe'
-        self.password = ""
+        self.password = "atk2395"
         self.driver = webdriver.Remote(command_executor='http://localhost:9999',
                                        desired_capabilities={'app': self.hts_path})  # put it in test method body
         self.driver.implicitly_wait(10)
