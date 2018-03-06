@@ -12,13 +12,14 @@ class Catch(screenshot):
     def __init__(self):
         # put it in setUp
         self.save_path = 'C:/Users/Administrator/Desktop/stock_img'
+        self.warn_log = 'C:/Users/Administrator/Desktop/warning_log.log'
         self.upload = ['node','C:/Users/Administrator/Desktop/stock_img/Porshche/upload.js']
         self.hts_path = 'C:/JihSun/HTS2/JSCOM.exe'
         self.password = "atk2395"
         self.driver = webdriver.Remote(command_executor='http://localhost:9999',
                                        desired_capabilities={'app': self.hts_path})  # put it in test method body
         self.driver.implicitly_wait(10)
-
+        open(self.warn_log, 'w').write("")
 
     def login(self):
         self.driver.find_element_by_class_name('TEdit').find_element_by_name("").send_keys(self.password)
@@ -56,6 +57,9 @@ class Catch(screenshot):
                 self.take_screen_from_list(stk)
             except:
                 time.sleep(5)
+                a = open(self.warn_log, 'a')
+                a.write('Entry failed! num :' + str(stk) + '\n')
+                a.close()
                 if not self.driver.find_element_by_class_name("TCdEdit").is_displayed():
                     fc = self.focus_on_target_page()
                 print(stk)

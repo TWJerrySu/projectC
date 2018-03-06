@@ -19,6 +19,9 @@ class screenshot:
         try:
             self.driver.get_screenshot_as_file(file_path)
         except:
+            a = open(self.warn_log, 'a')
+            a.write('Take screenshot failed! num :' + str(stock_num) + '\n')
+            a.close()
             print("Failed to take screen.Num: {}".format(stk))
 
 # a = screenshot()
