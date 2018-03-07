@@ -6,8 +6,8 @@ class screenshot:
         pass
 
     def get_stock_number_list(self):
-        tmp_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-        path = os.path.join(tmp_path, "data", "stock.csv")
+        tmp_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir))
+        path = os.path.join(tmp_path, "Porshche", "stock.csv")
         data = open(path)
         data_list = data.read().split(',')
         print(data_list)
